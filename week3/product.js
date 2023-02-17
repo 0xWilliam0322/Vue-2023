@@ -1,6 +1,6 @@
 import { createApp} from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.47/vue.esm-browser.min.js'
 let productModal ={}
-let delProductModal ={}
+// let delProductModal ={}
 const app = {
     data() {
         return {
@@ -25,16 +25,16 @@ const app = {
             })
         },
         updateProduct() {
-            
+            console.log('XDD');
         }
     } , 
     mounted() {
         // 取出 Token
-		const token = document.cookie.replace(/(?:(?:^|.*;\s*)cationToken\s*=\s*([^;]*).*$)|^.*$/,"$1");
-		axios.defaults.headers.common.Authorization = token;
-    console.log(token);
+		const token = document.cookie.replace(/(?:(?:^|.*;\s*)HexToken\s*=\s*([^;]*).*$)|^.*$/,"$1");
+        axios.defaults.headers.common["Authorization"] = token;
+        console.log(token);
+
 		this.getProducts();
-        this.getProducts()
 
 
     // Bootstrap 方法

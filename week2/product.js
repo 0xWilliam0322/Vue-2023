@@ -11,20 +11,6 @@ createApp({
 		
 	},
 	methods: {
-        // 確認是否登入
-		checkLogin() {
-			const url = `${this.apiUrl}/api/user/check`;
-			axios
-				.post(url)
-				.then((res) => {
-					// this.getData();
-                    console.log(res);
-				})
-				.catch((err) => {
-					alert(err.data.message);
-					window.location = "./login.html";
-				});
-		},
         // 取得資料
         getData() {
             const url = `${this.apiUrl}/api/${this.apiPath}/admin/products/all`;
@@ -38,10 +24,15 @@ createApp({
 					alert(err.data.message);
 				});
         },
+
+		//更新資料
+		updateProduct() {
+
+		}
 	},
 	mounted() {
 		// 取出 Token
-		const token = document.cookie.replace(/(?:(?:^|.*;\s*)cationToken\s*=\s*([^;]*).*$)|^.*$/,"$1");
+		const token = document.cookie.replace(/(?:(?:^|.*;\s*)HexToken\s*=\s*([^;]*).*$)|^.*$/,"$1");
 		axios.defaults.headers.common.Authorization = token;
     // console.log(token);
 		this.checkLogin();
