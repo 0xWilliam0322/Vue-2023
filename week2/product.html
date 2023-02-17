@@ -57,7 +57,7 @@
             </div>
             <div class="col-md-6">
               <h2>單一產品細節</h2>
-              <template v-if='Object.keys(tempProduct).length>0' >
+              <template v-if='tempProduct?.imagesUrl?.length' >
                 <div class="card mb-3">
                   <img v-bind:src="tempProduct.imageUrl" class="card-img-top primary-image" alt="主圖">
                   <div class="card-body">

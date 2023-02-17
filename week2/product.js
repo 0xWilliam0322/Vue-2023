@@ -28,7 +28,7 @@ createApp({
         // 取得資料
         getData() {
             const url = `${this.apiUrl}/api/${this.apiPath}/admin/products/all`;
-			console.log(url);
+			// console.log(url);
             axios.get(url)
 				.then((res) => {
 					this.products = res.data.products;
@@ -43,7 +43,7 @@ createApp({
 		// 取出 Token
 		const token = document.cookie.replace(/(?:(?:^|.*;\s*)cationToken\s*=\s*([^;]*).*$)|^.*$/,"$1");
 		axios.defaults.headers.common.Authorization = token;
-    console.log(token);
+    // console.log(token);
 		this.checkLogin();
         this.getData()
 	},
