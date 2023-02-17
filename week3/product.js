@@ -32,7 +32,7 @@ const app = {
         // 取出 Token
 		const token = document.cookie.replace(/(?:(?:^|.*;\s*)cationToken\s*=\s*([^;]*).*$)|^.*$/,"$1");
 		axios.defaults.headers.common.Authorization = token;
-    // console.log(token);
+    console.log(token);
 		this.getProducts();
         this.getProducts()
 
