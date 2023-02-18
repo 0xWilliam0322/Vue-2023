@@ -42,7 +42,12 @@ const app = {
             }    },
         updateProduct() {
             const url =`${this.apiUrl}/api/${this.apiPath}/admin/product`
-            axios.post(url,{data:this.tempProduct}).then(res=>{
+            let methods = 'post'
+            if(!this.isNew){
+             url =`${this.apiUrl}/api/${this.apiPath}/admin/product/{id}`
+             methods = 'put'
+            }
+            axios[methods](url,{data:this.tempProduct}).then(res=>{
                 this.getProducts()
                 productModal.hide()
             })
