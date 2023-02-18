@@ -8,9 +8,9 @@ const app = {
         apiPath: "william_vue",
         products: [],
         tempProduct: {
-            imgUrl:[]
+            imagesUrl:[]
         },
-        isNew: false
+        isNew: false  //確認是編輯或是新增所使用
         }
     } ,
     methods :{
@@ -24,8 +24,28 @@ const app = {
 
             })
         },
+        openModal(status , product){
+            if(status==='create'){
+                productModal.show()
+                this.isNew = true
+                // 帶入初始化資料
+                this.tempProduct = {
+                    imagesUrl:[]
+                }           
+             } 
+                else if(status ==='edit')
+            {
+                productModal.show()
+                this.isNew = false
+                // 要帶入當前編輯的資料
+                this.tempProduct = { ...product}
+            }    },
         updateProduct() {
-            console.log('XDD');
+            const url =`${this.apiUrl}/api/${this.apiPath}/admin/product`
+            axios.post(url,{data:this.tempProduct}).then(res=>{
+                this.getProducts()
+                productModal.hide()
+            })
         }
     } , 
     mounted() {
@@ -41,7 +61,7 @@ const app = {
     //1. 初始化new
     //2. 呼叫方法 show ,hide
      productModal = new bootstrap.Modal('#productModal')
-    productModal.show()
+    // productModal.show()
 }
 }  
 createApp(app).mount('#app')
