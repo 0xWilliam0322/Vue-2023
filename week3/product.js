@@ -39,9 +39,15 @@ const app = {
                 this.isNew = false
                 // 要帶入當前編輯的資料
                 this.tempProduct = { ...product}
-            }    },
+            } 
+                else if (status==='delete'){
+                    delProductModal.show()
+                    this.tempProduct = { ...product}//等等取ID使用
+
+                }
+           },
         updateProduct() {
-            const url =`${this.apiUrl}/api/${this.apiPath}/admin/product`
+            let url =`${this.apiUrl}/api/${this.apiPath}/admin/product`
             let methods = 'post'
             if(!this.isNew){
              url =`${this.apiUrl}/api/${this.apiPath}/admin/product/{id}`
@@ -50,6 +56,14 @@ const app = {
             axios[methods](url,{data:this.tempProduct}).then(res=>{
                 this.getProducts()
                 productModal.hide()
+            })
+        } ,
+        deleteProduct () {
+            // 不需要重新賦值 ，  所以用const
+            const url =`${this.apiUrl}/api/${this.apiPath}/admin/product/${this.tempProduct.id}`
+            axios.delete(url).then(() =>{
+                this.getProducts()
+                delProductModal.hide()
             })
         }
     } , 
@@ -66,6 +80,7 @@ const app = {
     //1. 初始化new
     //2. 呼叫方法 show ,hide
      productModal = new bootstrap.Modal('#productModal')
+     delProductModal =new bootstrap.Modal('#delProductModal') 
     // productModal.show()
 }
 }  
